@@ -3,7 +3,7 @@ import time
 import random
 
 
-snake_speed = 7
+snake_speed = 10
 
 plus_speed = 0
 
@@ -98,7 +98,9 @@ def game_over(X, Y, color):
 
     global snake_speed
 
-    snake_speed = 5
+    snake_speed = 10
+
+    global players_choise
 
     global green_snake_body
     global green_snake_position
@@ -120,10 +122,11 @@ def game_over(X, Y, color):
                 game_window, green, pygame.Rect(pos[0] + 1, pos[1] + 1, size - 2, size - 2)
             )
 
-        for pos in blue_snake_body:
-            pygame.draw.rect(
-                game_window, blue, pygame.Rect(pos[0] + 1, pos[1] + 1, size - 2, size - 2)
-            )
+        if players_choise:
+            for pos in blue_snake_body:
+                pygame.draw.rect(
+                    game_window, blue, pygame.Rect(pos[0] + 1, pos[1] + 1, size - 2, size - 2)
+                )
 
         pygame.draw.rect(
         game_window,
@@ -136,39 +139,51 @@ def game_over(X, Y, color):
         my_font = pygame.font.SysFont("arial", 50)
 
         # Создание конечного текста
-        if green_score > blue_score:
-            game_over_surface1 = my_font.render(
-                "Green WINS with score: "
-                + str(green_score),
-                True,
-                color,
-            )
 
-            game_over_surface2 = my_font.render(
-                "  Blue score: "
-                + str(blue_score),
-                True,
-                color,
-            )
+        if players_choise:
+            if green_score > blue_score:
+                game_over_surface1 = my_font.render(
+                    "Green WINS with score: "
+                    + str(green_score),
+                    True,
+                    color,
+                )
 
-        elif green_score < blue_score:
-            game_over_surface1 = my_font.render(
-                "Blue WINS with score: "
-                + str(blue_score),
-                True,
-                color,
-            )
+                game_over_surface2 = my_font.render(
+                    "  Blue score: "
+                    + str(blue_score),
+                    True,
+                    color,
+                )
 
-            game_over_surface2 = my_font.render(
-                "  Green score: "
-                + str(green_score),
-                True,
-                color,
-            )
+            elif green_score < blue_score:
+                game_over_surface1 = my_font.render(
+                    "Blue WINS with score: "
+                    + str(blue_score),
+                    True,
+                    color,
+                )
 
+                game_over_surface2 = my_font.render(
+                    "  Green score: "
+                    + str(green_score),
+                    True,
+                    color,
+                )
+
+            else:
+                game_over_surface1 = my_font.render(
+                    "DRAW score: " + str(green_score), True, color
+                )
+
+                game_over_surface2 = my_font.render(
+                    "  ",
+                    True,
+                    color,
+                )
         else:
             game_over_surface1 = my_font.render(
-                "DRAW score: " + str(green_score), True, color
+                "Your score: " + str(green_score), True, color
             )
 
             game_over_surface2 = my_font.render(
@@ -176,6 +191,7 @@ def game_over(X, Y, color):
                 True,
                 color,
             )
+
         
         little_font = pygame.font.SysFont("arial", 35)
 
@@ -451,7 +467,7 @@ if players_choise:
             and green_snake_position[1] == fruit_position[1]
         ):
             snake_speed += plus_speed
-            green_score += 10
+            green_score += plus_score
             fruit_spawn = False
         else:
             green_snake_body.pop()
@@ -462,7 +478,7 @@ if players_choise:
             and blue_snake_position[1] == fruit_position[1]
         ):
             snake_speed += plus_speed
-            blue_score += 10
+            blue_score += plus_score
             fruit_spawn = False
         else:
             blue_snake_body.pop()
@@ -622,7 +638,7 @@ else:
             and green_snake_position[1] == fruit_position[1]
         ):
             snake_speed += plus_speed
-            green_score += 10
+            green_score += plus_score
             fruit_spawn = False
         else:
             green_snake_body.pop()
