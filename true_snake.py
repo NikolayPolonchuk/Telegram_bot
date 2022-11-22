@@ -517,27 +517,27 @@ if players_choise:
 
         # Обработка выхода за границу
         if green_snake_position[0] < 0 or green_snake_position[0] > window_x - size:
-            if green_score > 50:
-                green_score -= 50
+            if green_score > plus_score * 4:
+                green_score -= plus_score * 4
             else:
                 green_score = 0
             game_over(green_snake_position[0], green_snake_position[1], red)
         elif green_snake_position[1] < 0 or green_snake_position[1] > window_y - size:
-            if green_score > 50:
-                green_score -= 50
+            if green_score > plus_score * 4:
+                green_score -= plus_score * 4
             else:
                 green_score = 0
             game_over(green_snake_position[0], green_snake_position[1], red)
 
         if blue_snake_position[0] < 0 or blue_snake_position[0] > window_x - size:
-            if blue_score > 50:
-                blue_score -= 50
+            if blue_score > plus_score * 4:
+                blue_score -= plus_score * 4
             else:
                 blue_score = 0
             game_over(blue_snake_position[0], blue_snake_position[1], red)
         elif blue_snake_position[1] < 0 or blue_snake_position[1] > window_y - size:
-            if blue_score > 50:
-                blue_score -= 50
+            if blue_score > plus_score * 4:
+                blue_score -= plus_score * 4
             else:
                 blue_score = 0
             game_over(blue_snake_position[0], blue_snake_position[1], red)
@@ -552,30 +552,30 @@ if players_choise:
         # Столкновение с зелёной змеёй
         for block in green_snake_body[1:]:
             if green_snake_position[0] == block[0] and green_snake_position[1] == block[1]:
-                if green_score < 50:
+                if green_score < plus_score * 4:
                     green_score = 0
                 else:
-                    green_score -= 50
+                    green_score -= plus_score * 4
 
                 game_over(green_snake_position[0], green_snake_position[1], red)
 
             if blue_snake_position[0] == block[0] and blue_snake_position[1] == block[1]:
-                green_score += 10
+                green_score += plus_score
 
                 game_over(blue_snake_position[0], blue_snake_position[1], red)
 
         # Столкновение с синей змеёй
         for block in blue_snake_body[1:]:
             if green_snake_position[0] == block[0] and green_snake_position[1] == block[1]:
-                blue_score += 10
+                blue_score += plus_score
 
                 game_over(green_snake_position[0], green_snake_position[1], red)
 
             if blue_snake_position[0] == block[0] and blue_snake_position[1] == block[1]:
-                if blue_score < 50:
+                if blue_score < plus_score * 4:
                     blue_score = 0
                 else:
-                    blue_score -= 50
+                    blue_score -= plus_score * 4
 
                 game_over(blue_snake_position[0], blue_snake_position[1], red)
 
