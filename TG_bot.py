@@ -37,7 +37,9 @@ def start(m, res=False):
 # Получение сообщений от юзера
 @bot.message_handler(content_types=["text"])
 def handle_text(message):
-    global links, was_req, is_find
+    global links
+    global was_req
+    global is_find
 
 
     # обработка не предусмотренных команд
