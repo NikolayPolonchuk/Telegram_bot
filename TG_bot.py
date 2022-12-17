@@ -10,7 +10,7 @@ was_req = False
 is_find = False
 
 # Создаем экземпляр бота
-bot = telebot.TeleBot('5898546763:AAFHVF2EW9hm2D0AkrePJiACGRV6LOf2OJg')
+bot = telebot.TeleBot('*Токен бота*')
 
 # Функция, обрабатывающая команду /start
 @bot.message_handler(commands=["start"])
